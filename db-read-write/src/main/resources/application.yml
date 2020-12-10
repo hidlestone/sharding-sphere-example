@@ -1,0 +1,39 @@
+server:
+  port: 8080
+  
+#指定mybatis 配置文件位置
+mybatis:
+  config-location: classpath:mybatis-config.xml
+  
+spring:
+  shardingsphere:
+    datasource:
+      names:
+        master,slave
+      # 主数据源
+      master:
+        type: com.alibaba.druid.pool.DruidDataSource
+        driver-class-name: com.mysql.jdbc.Driver
+        url: jdbc:mysql://localhost:3306/masterdb?characterEncoding=utf-8
+        username: root
+        password: root
+      # 从数据源
+      slave:
+        type: com.alibaba.druid.pool.DruidDataSource
+        driver-class-name: com.mysql.jdbc.Driver
+        url: jdbc:mysql://localhost:3306/slavedb?characterEncoding=utf-8
+        username: root
+        password: root
+    masterslave:
+      # 读写分离配置
+      load-balance-algorithm-type: round_robin
+      # 最终的数据源名称
+      name: dataSource
+      # 主库数据源名称
+      master-data-source-name: master
+      # 从库数据源名称列表，多个逗号分隔
+      slave-data-source-names: slave
+    props:
+      # 开启SQL显示，默认false
+      sql:
+        show: true
