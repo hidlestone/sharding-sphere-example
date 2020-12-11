@@ -44,8 +44,8 @@ spring:
 **tab_user** ：是逻辑表名称，分表后创建的表应该是 tab_user_xxx。   
 **actual-data-nodes** ：是数据节点由数据源和数据表组成，也就是真实表，使用行表达式  {0..1} 表示有 tab_user0 到 tab_user1 共2张表；shardingsphere 不会自动创建表，需要使用 脚本定时或手动提前创建好。  
 **table-strategy** ：是分片策略，根据需求实现具体的分片策略，inline 为行表达式， sharding-column 为自定义分片。  
-**algorithm-expression**：是算法表达式，根据 id 取模尾数为 n 的路由到后缀为 n 的表中（tab_usern）。  
-**key-generator**：是主键生成，SNOWFLAKE 是Twitter的分布式 ID 生成算法。  
+**algorithm-expression** ：是算法表达式，根据 id 取模尾数为 n 的路由到后缀为 n 的表中（tab_usern）。  
+**key-generator** ：是主键生成，SNOWFLAKE 是Twitter的分布式 ID 生成算法。  
 
 ### 时间字段分片（如日志表）
 ```yaml
